@@ -145,7 +145,7 @@ const Index = () => {
 
       <footer className="border-t border-border/50 bg-card/50 backdrop-blur-sm mt-20">
         <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>© 2025 ExpenseFlow. Built for your hackathon success.</p>
+          
         </div>
       </footer>
     </div>
