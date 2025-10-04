@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# Expense Management System
 
-## Project info
+[cite_start]An automated expense management and reimbursement system designed to solve the challenges of manual expense processes which are often time-consuming, error-prone, and lack transparency[cite: 3]. [cite_start]This platform introduces dynamic, multi-level approval workflows to streamline expense reporting for companies[cite: 5, 6].
 
-**URL**: https://lovable.dev/projects/97e9afe3-24e8-4f61-8f95-4c94c7080550
+---
 
-## How can I edit this code?
+## Core Features
 
-There are several ways of editing your application.
+### Authentication & User Management
+* [cite_start]On the first login or signup, a new `Company` and an `Admin User` are automatically created[cite: 11]. [cite_start]The company's currency is set based on the selected country[cite: 11].
+* [cite_start]The **Admin** can create Employees and Managers[cite: 13].
+* [cite_start]The **Admin** can assign and change user roles (Employee, Manager)[cite: 14].
+* [cite_start]The **Admin** can define manager relationships for employees[cite: 15].
 
-**Use Lovable**
+### Expense Submission (Employee Role)
+* [cite_start]**Employees** can submit expense claims with details such as Amount, Category, Description, and Date[cite: 18, 19]. [cite_start]The expense amount can be in a different currency than the company's[cite: 18].
+* [cite_start]**Employees** can view their own expense history, including `Approved` and `Rejected` claims[cite: 20].
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/97e9afe3-24e8-4f61-8f95-4c94c7080550) and start prompting.
+### Approval Workflow (Manager/Admin Role)
+* [cite_start]The system supports multi-level approval workflows where the Admin can define the sequence of approvers (e.g., Manager -> Finance -> Director)[cite: 6, 23, 26, 28, 31].
+* [cite_start]An expense is first approved by the employee's manager if the "IS MANAGER APPROVER" field is checked[cite: 22].
+* [cite_start]The expense claim moves to the next approver only after the current one approves or rejects it[cite: 32].
+* [cite_start]**Managers** can view expenses that are waiting for their approval[cite: 34].
+* [cite_start]**Managers** can approve or reject expenses and add comments[cite: 35]. [cite_start]When viewing an expense, the amount is visible in the company's default currency[cite: 44].
 
-Changes made via Lovable will be committed automatically to this repo.
+### Conditional Approval Flow
+[cite_start]The approval rules are flexible and support conditional logic[cite: 7].
+* [cite_start]**Percentage rule**: The expense is approved if a specified percentage of approvers (e.g., 60%) approve it[cite: 39].
+* [cite_start]**Specific approver rule**: The expense is automatically approved if a specific approver (e.g., CFO) approves it[cite: 40].
+* [cite_start]**Hybrid rule**: A combination of the percentage and specific approver rules can be used (e.g., 60% OR CFO approves)[cite: 41].
+* [cite_start]These conditional flows can be combined with the multi-level approval workflow[cite: 42].
 
-**Use your preferred IDE**
+### Additional Features
+* [cite_start]**OCR for Receipts**: Employees can scan a receipt, and an OCR algorithm will auto-generate the expense with all necessary fields like amount, date, description, and vendor name filled in[cite: 46, 47].
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Roles & Permissions
 
-Follow these steps:
+| Role      | Permissions                                                                                                         |
+| :-------- | :------------------------------------------------------------------------------------------------------------------ |
+| **Admin** | [cite_start]Create company (auto on signup), manage users, set roles, configure approval rules, view all expenses, override approvals[cite: 44]. |
+| **Manager** | [cite_start]Approve/reject expenses (amount visible in company's default currency), view team expenses, escalate as per rules[cite: 44]. |
+| **Employee** | [cite_start]Submit expenses, view their own expenses, check approval status[cite: 44].                                              |
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Technology Stack
 
-# Step 3: Install the necessary dependencies.
-npm i
+* **Frontend**: React / Vue.js / Angular
+* **Backend**: Node.js (Express.js) / Python (Django/Flask)
+* **Database**: PostgreSQL / MongoDB
+* **External APIs**:
+    * [cite_start]Country & Currency Data: `https://restcountries.com/v3.1/all?fields=name,currencies` [cite: 48]
+    * [cite_start]Currency Conversions: `https://api.exchangerate-api.com/v4/latest/{BASE_CURRENCY}` [cite: 48]
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## Getting Started
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Prerequisites
 
-**Use GitHub Codespaces**
+* Node.js & npm
+* Git
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Installation
 
-## What technologies are used for this project?
+1.  **Clone the repository:**
+    ```sh
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    cd your-repo-name
+    ```
+2.  **Install Backend Dependencies:**
+    ```sh
+    cd server
+    npm install
+    ```
+3.  **Install Frontend Dependencies:**
+    ```sh
+    cd ../client
+    npm install
+    ```
+4.  **Set up Environment Variables:**
+    Create a `.env` file in the `server` directory and add your database credentials and API keys.
 
-This project is built with:
+5.  **Run the application:**
+    * Start the backend server: `npm start` (from the `server` directory)
+    * Start the frontend application: `npm start` (from the `client` directory)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## Mockup
 
-Simply open [Lovable](https://lovable.dev/projects/97e9afe3-24e8-4f61-8f95-4c94c7080550) and click on Share -> Publish.
+The UI/UX design is based on the following Excalidraw mockup:
+* [cite_start][View Mockup](https://link.excalidraw.com/l/65VNwvy7c4X/4WSLZDTrhkA) [cite: 49]
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+This project is licensed under the MIT License.
